@@ -1,0 +1,138 @@
+body {
+  position: relative;
+  background-color: #eaeded !important;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100% !important;
+  border: none !important;
+}
+
+.t-head {
+  background-color: #3498db !important;
+  color: white !important;
+  padding-block: 1rem !important;
+  padding-inline: 2rem !important;
+  text-align: left !important;
+  border: none !important;
+}
+
+.product-img {
+  max-width: 15rem !important;
+  height: 15rem;
+}
+
+.t-body {
+  border: none !important;
+  text-align: left !important;
+  padding-block: 1rem !important;
+  padding-inline: 2rem !important;
+  vertical-align: middle !important;
+  min-width: 15rem !important;
+}
+
+.btn-checkbox {
+  background-color: #3498db !important;
+  color: white !important;
+  border: 1px solid lightgrey !important;
+  padding: 2px !important;
+}
+
+.not-checked {
+  display: none !important;
+}
+
+.checked {
+  display: flex !important;
+}
+
+.delete-button {
+  background-color: transparent !important;
+  color: black !important;
+  padding: 11px !important;
+  border-radius: 100% !important;
+  border: none !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  background-color: red !important;
+  color: white !important;
+}
+
+.delete-button:active {
+  background-color: darkred !important;
+  color: white !important;
+}
+
+.body-box {
+  text-align: center;
+  padding: 40px 0;
+  background: #ebf0f5;
+}
+
+.title-box {
+  color: #88b04b;
+  font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.text-box {
+  color: #404f5e;
+  font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+.green-card {
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #c8d0d8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.bi-check {
+  color: #88b04b;
+  font-size: 200px;
+}
+.bi-x {
+  color: red;
+  font-size: 200px;
+}
+.table-card-container {
+  padding-inline: 10rem !important;
+}
+
+@media (max-width: 1300px) {
+  .table-card-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-self: center !important;
+    padding-inline: 2rem !important;
+  }
+
+  .card {
+    width: 100% !important;
+  }
+
+  #payment {
+    display: flex !important;
+    align-items: center !important;
+    place-self: end !important;
+  }
+
+  .t-body {
+    border: none !important;
+    text-align: left !important;
+    padding-block: 1rem !important;
+    padding-inline: 2rem !important;
+    vertical-align: middle !important;
+  }
+}

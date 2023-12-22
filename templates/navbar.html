@@ -1,0 +1,213 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='navbar.css') }}"
+  />
+
+  <script src="{{ url_for('static', filename='navbar.js') }}"></script>
+</head>
+<nav
+  class="navbar navbar-expand-lg fixed-top default-navbar min-vw-100"
+  id="navbar"
+>
+  <div
+    id="responsive-navbar"
+    class="d-flex align-items-center justify-content-between min-vw-100"
+    style="padding: 0 !important"
+  >
+    <div
+      class="container-fluid d-flex align-items-center justify-content-between"
+      style="padding: 0 !important; padding-left: 2rem !important"
+    >
+      <a class="navbar-brand" href="/">
+        <img
+          src="{{ url_for('static', filename='image/logo.jpg') }}"
+          class="icona"
+          alt=""
+        />
+      </a>
+      <div class="d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav h-100">
+          <li
+            class="nav-item dropdown d-flex align-items-center justify-content-end"
+          >
+            <button
+              class="menu-button"
+              data-bs-toggle="dropdown"
+              id="menu-button"
+              aria-expanded="false"
+            >
+              <i
+                class="bi bi-list text-white"
+                style="font-size: 1.25rem !important; padding: 0 !important"
+              ></i>
+            </button>
+            <ul
+              class="dropdown-menu custom-dropdown-menu"
+              style="max-height: 35rem !important"
+              id="dropdown-responsive"
+            >
+              <li class="dropdown-submenu">
+                <button
+                  class="dropdown-item dropdown"
+                  onclick="window.location.href = '/videogames'"
+                >
+                  videogames
+                </button>
+              </li>
+              <li class="dropdown-submenu">
+                <button
+                  class="dropdown-item dropdown"
+                  onclick="window.location.href = '/funko'"
+                >
+                  funko pop
+                </button>
+              </li>
+              <li>
+                <button
+                  class="dropdown-item"
+                  onclick="window.location.href = '/fumetto'"
+                >
+                  fumetto
+                </button>
+              </li>
+              <li
+                style="padding-inline: 5px !important"
+                id="dropdown-divider-responsive"
+              >
+                <hr
+                  class="dropdown-divider"
+                  style="background-color: white !important"
+                />
+              </li>
+              <li
+                class="d-flex align-items-center justify-content-evenly"
+                style="padding-bottom: 10px"
+                id="actions-responsive"
+              >
+                <a class="cart-button" id="cart-btn-responsive">
+                  <span>CARRELLO</span> <i class="fas fa-cart-shopping"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div style="z-index: 100000 !important; padding-right: 2rem !important">
+          <button
+            class="user-button btn align-items-center"
+            id="user-button-responsive"
+          >
+            <i class="fas fa-user" style="font-size: 1.25rem"></i>
+          </button>
+          <div class="user-card" id="user-card-responsive">
+            <div class="card" style="min-width: 13rem">
+              <div
+                class="card-body d-flex flex-column align-items-center"
+                id="user-card-body-responsive"
+                style="gap: 2px"
+              >
+                <div class="d-flex align-items-center gap-2">
+                  <p>Hi</p>
+                  <div class="d-flex align-items-center gap-1">
+                    <p id="user-firstName-responsive"></p>
+                    <p id="user-lastName-responsive"></p>
+                  </div>
+                </div>
+                <p id="user-email-responsive" style="margin-top: -10px"></p>
+              </div>
+              <div class="card-footer" style="margin-top: -1rem">
+                <button
+                  class="btn btn-danger w-100 bg-black border-black"
+                  id="logout-button-responsive"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="min-vw-100 d-flex align-items-center justify-content-between"
+    id="normal-navbar"
+    style="padding: 0 !important"
+  >
+    <a class="navbar-brand" href="/">
+      <img
+        src="{{ url_for('static', filename='image/logo.jpg') }}"
+        class="icona"
+        alt=""
+      />
+    </a>
+    <div
+      class="collapse navbar-collapse d-flex align-items-center justify-content-center"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav" style="gap: 2rem" id="navbar-links">
+        <li class="nav-item" style="margin-right: 10px">
+          <select
+            class="dropdown form-select"
+            id="page-select"
+            onchange="window.location.href = `/${document.getElementById('page-select').value}`"
+          >
+            <option class="invisible-option" value="" disabled selected>
+              HOME
+            </option>
+            <option value="videogames">VIDEOGAMES</option>
+            <option value="funko">FUNKO POP</option>
+            <option value="fumetto">FUMETTO</option>
+          </select>
+        </li>
+        <li class="nav-item">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cerca..."
+            class="form-control search-input"
+          />
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" onclick="search()">Cerca</button>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center justify-content-end" id="actions">
+      <a class="cart-button" id="cart-btn">
+        <span>CARRELLO</span> <i class="fas fa-cart-shopping"></i>
+      </a>
+    </div>
+    <div style="margin-right: 2rem; z-index: 100000 !important">
+      <button class="user-button btn align-items-center" id="user-button">
+        <i class="fas fa-user" style="font-size: 1.25rem"></i>
+      </button>
+      <div class="user-card" id="user-card" style="min-width: 13rem">
+        <div class="card">
+          <div
+            class="card-body d-flex flex-column align-items-center"
+            id="user-card-body"
+            style="gap: 2px"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <p>Hi</p>
+              <div class="d-flex align-items-center gap-1">
+                <p id="user-firstName"></p>
+                <p id="user-lastName"></p>
+              </div>
+            </div>
+            <p id="user-email" style="margin-top: -10px"></p>
+          </div>
+          <div class="card-footer" style="margin-top: -1rem">
+            <button
+              class="btn btn-danger w-100 bg-black border-black"
+              id="logout-button"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

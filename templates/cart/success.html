@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+   <link rel="icon" href="../static/image/logo.png"/>
+    <link
+            rel="manifest"
+            href="{{ url_for('static', filename='manifest.json') }}"
+    />
+    <meta name="theme-color" content="white"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+    <title>Games & Manga Shop</title>
+
+    <link rel="stylesheet" href="../../static/style.css"/>
+    <link rel="stylesheet" href="../../static/cart.css"/>
+    <script src="../../static/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg" style="background-color: #092236" id="header">
+    <a class="navbar-brand" href="/">
+        <img src="../../static/image/logo.jpg" class="icona" alt="">
+    </a>
+</nav>
+<div class="body-box">
+<div class="green-card">
+    <div style="border-radius:100%; padding: 2rem; background: #F8FAF5; display: flex !important; justify-content: center !important; align-items: center !important;">
+        <i class="bi bi-check" style="display: flex !important; justify-content: center !important; align-items: center !important;"></i>
+    </div>
+    <p class="title-box">Success</p>
+    <p class="text-box">Pagamento avvenuto con successo!<br/> A breve sarai reindirizzato alla Homepage.</p>
+</div>
+</div>
+<script>
+    <!-- Countdown for the redirect -->
+    let countdown = 5; // countdown to the redirect
+
+    function updateCounter() {
+        const counterElement = document.getElementById('countdown');
+        if (counterElement) {
+            counterElement.innerText = countdown;
+        }
+    }
+
+    function redirectToIndex() {
+        window.location.href = '/';
+    }
+
+    setInterval(function () {
+        countdown -= 1;
+        updateCounter();
+
+        if (countdown <= 0) {
+            redirectToIndex();
+        }
+    }, 1000);
+
+    // showing the countdown
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.createElement('div');
+        const countdownContainer = document.createElement('div');
+        container.style.cssText = "display: flex; align-items: center; justify-content: center; width: 100%;";
+        countdownContainer.style.cssText = "display: flex; align-items: center; justify-content: center; background-color: #333; width: max-content; gap: 5px; padding: 1.5rem; color: white; border-radius: 10px;";
+        countdownContainer.innerHTML = 'Redirect in <span id="countdown">' + countdown + '</span> secondi';
+        container.appendChild(countdownContainer);
+        document.body.appendChild(container);
+    });
+</script>
+</body>
+</html>
