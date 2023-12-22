@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <link rel="icon" href="../static/image/logo.png" />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
+    />
+    <meta name="theme-color" content="white" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bebas Neue"
+      rel="stylesheet"
+    />
+    <title>Games & Manga Shop</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='navbar.css') }}"
+    />
+    <script type="module">
+      import { loadNavbar } from '{{ url_for("static", filename="navbar.js")}}';
+
+      document.addEventListener("DOMContentLoaded", loadNavbar);
+    </script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='videogames.js') }}"></script>
+  </head>
+  <body>
+    <nav id="navbar"></nav>
+    <div
+      class="container-fluid d-flex gap-5 align-content-start justify-content-start"
+    >
+      <div class="menu-container">
+        <nav role="navigation">
+          <ul style="width: max-content">
+            <li>
+              <a href="/videogames" id="latest"> Nuovi arrivi </a>
+            </li>
+            <li class="dropdown2">
+              <a href="#" id="price" aria-haspopup="true">
+                Prezzo <i class="fa-solid fa-chevron-down fa-sm"> </i>
+              </a>
+              <ul
+                class="dropdown2-content"
+                id="price-dropdown"
+                aria-label="submenu"
+              >
+                <li>
+                  <a
+                    class="text-dropdown2"
+                    href="/videogames/price/asc"
+                    id="asc"
+                  >
+                    Crescente
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="text-dropdown2"
+                    href="/videogames/price/desc"
+                    id="desc"
+                  >
+                    Decrescente
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown2">
+              <a href="#" aria-haspopup="true" id="genre">
+                Genere <i class="fa-solid fa-chevron-down fa-sm"></i>
+              </a>
+              <ul
+                class="dropdown2-content"
+                id="genre-dropdown"
+                aria-label="submenu"
+              >
+                <li>
+                  <a
+                    class="text-dropdown2"
+                    id="action"
+                    href="/videogames/genre/action"
+                  >
+                    Azione
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="text-dropdown2"
+                    id="adventure"
+                    href="/videogames/genre/adventure"
+                  >
+                    Avventura
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="text-dropdown2"
+                    id="sport"
+                    href="/videogames/genre/sport"
+                  >
+                    Sport
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="small-container">
+        <p class="name d-flex align-items-center justify-content-center">
+          Prodotti Videogames
+        </p>
+        {% for i in range(0, giochi |length, 4) %}
+        <div class="products-container w-100 mb-4">
+          {% for j in range(i, i + 4) %} {% if j < giochi|length %}
+          <form method="post" id="buy-game-{{ j }}">
+            <div class="small-product card w-100 h-100">
+              <img
+                src="{{ url_for('static', filename='image/' + giochi[j][7])
+                }}"
+                class="card-img-top w-100"
+              />
+              <div
+                class="card-body d-flex align-items-center flex-column text-center"
+              >
+                <p class="small-name">{{ giochi[j][1] }}</p>
+                <p
+                  style="font-size: 12px"
+                  class="d-flex align-items-center justify-content-center gap-1"
+                >
+                  {{ giochi[j][2] }}
+                  <span style="font-family: sans-serif">€</span>
+                </p>
+              </div>
+              <div
+                class="card-footer border border-0 bg-white d-flex align-items-center justify-content-center"
+              >
+                <input type="hidden" value="{{giochi[j][0]}}" name="item_id" />
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  onclick="handleAddItemToCart('buy-game-{{ j }}')"
+                >
+                  Compra ora
+                </button>
+              </div>
+            </div>
+          </form>
+          {% endif %} {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <footer class="info-bar">
+      <p>Games & Manga Shop S.R.L.</p>
+      <p>address: Via Centro Direzionale ISOLA C4, 80133 Napoli NA</p>
+      <p>Email: info@gamesandmangashop.com</p>
+      <p>Partita IVA: 0464189042</p>
+      <p style="display: flex; justify-content: end; font-size: 10px">
+        © 2023 Games&MangaShop.it - All rights reserved
+      </p>
+      <button id="scrollToTopButton" onclick="scrollToTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </footer>
+
+        <!-- Login modal -->
+        <div
+          class="modal fade"
+          id="loginModal"
+          tabindex="-1"
+          aria-labelledby="loginModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" style="width: 25rem">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-2" id="loginModalLabel">Login</h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  style="box-shadow: none !important"
+                ></button>
+              </div>
+              <div class="modal-body">
+                {% if error_message %}
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    document.getElementById("errorContent").innerText =
+                      "{{ error_message }}";
+                    document.getElementById("errorModal").style.display =
+                      "block";
+                  });
+                </script>
+                {% endif %}
+                <div class="d-flex flex-column align-items-start gap-4">
+                  <form
+                    id="login"
+                    class="d-flex align-items-start flex-column gap-3 w-100"
+                  >
+                    <div
+                      class="d-flex flex-column align-items-start gap-1 w-100"
+                    >
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Email"
+                        aria-label="Email"
+                        name="email"
+                        id="email"
+                      />
+                    </div>
+                    <div
+                      class="d-flex flex-column align-items-start gap-1 w-100"
+                    >
+                      <label for="password">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        aria-label="Password"
+                        name="password"
+                        id="password"
+                      />
+                    </div>
+                    <div
+                      class="d-flex align-content-center justify-content-start gap-2"
+                      id="to-registration"
+                    >
+                      <p id="createAccountText">Non hai un account?</p>
+                      <a data-bs-toggle="modal" data-bs-target="#signupModal">
+                        Crealo ora!
+                      </a>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="transition: all 0.2s ease-in-out"
+                      id="login-button"
+                    >
+                      Accedi
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Sign up modal -->
+        <div
+          class="modal fade"
+          id="signupModal"
+          tabindex="-1"
+          aria-labelledby="signUpModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-2" id="signUpModalLabel">
+                  Registrazione
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  style="box-shadow: none !important"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form id="registration" class="registration-modal w-100">
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="firstName">Nome</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Nome"
+                      aria-label="Nome"
+                      name="firstName"
+                      id="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="lastName">Cognome</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Cognome"
+                      aria-label="Cognome"
+                      name="lastName"
+                      id="lastName"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="birthdate">Data di Nascita</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      placeholder="Data di Nascita"
+                      aria-label="Data di Nascita"
+                      name="birthdate"
+                      id="birthdate"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="phoneNumber">Cellulare</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      placeholder="Cellulare"
+                      aria-label="Cellulare"
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="country">Paese</label>
+                    <select
+                      class="form-select"
+                      id="country"
+                      name="country"
+                      required
+                      style="
+                        background-color: white !important;
+                        color: inherit !important;
+                      "
+                    >
+                      <option selected>Seleziona</option>
+                    </select>
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="address">Indirizzo</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Indirizzo"
+                      aria-label="Indirizzo"
+                      name="address"
+                      id="address"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="username">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Username"
+                      aria-label="Username"
+                      name="username"
+                      id="username"
+                      required
+                    />
+                  </div>
+                  <div class="d-flex flex-column align-items-start gap-1 w-100">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      aria-label="Password"
+                      name="signupPassword"
+                      id="signupPassword"
+                      required
+                    />
+                  </div>
+                  <div
+                    class="d-flex flex-column align-items-start gap-1"
+                    id="email-container"
+                  >
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Email"
+                      aria-label="Email"
+                      name="signupEmail"
+                      id="signupEmail"
+                      required
+                    />
+                  </div>
+                  <div style="grid-column: 1 / span 2; justify-self: end">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="transition: all 0.2s ease-in-out"
+                      id="registration-button"
+                    >
+                      Registrati
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="errorModal" class="modal" style="display: none">
+          <div class="modal-content">
+            <i class="bi bi-x close" onclick="closeModal()"></i>
+            <div id="errorContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

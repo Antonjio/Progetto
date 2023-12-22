@@ -1,0 +1,739 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+
+body {
+  background: #f6f4f0  !important;
+  min-height: 100vh;
+  font-family: "Audiowide", sans-serif !important;
+  margin: 0;
+  padding: 0;
+}
+
+/*-------------------------ICONA LOGO-----------------*/
+.icona {
+  width: 100%;
+  height: 6rem;
+}
+
+#header a:hover {
+  background-color: transparent !important;
+}
+
+/*-------------------------SEZIONE DI SOPRA-----------------*/
+.dropdown {
+  font-size: 12px;
+  font-weight: bold;
+  width: 10rem;
+}
+
+.form-select {
+  background-color: #3498db !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+select option {
+  font-weight: bold;
+  background-color: #8ccbf5;
+}
+
+select option.invisible-option {
+  display: none;
+}
+
+.btn-primary {
+  background-color: #3498db !important;
+  padding-block: 5px !important;
+  padding-inline: 1rem !important;
+  border-radius: 0.625rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.btn-primary:hover {
+  background-color: #2078b4 !important;
+}
+
+.login-button,
+.cart-button {
+  font-size: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
+  color: white;
+  background-color: transparent !important;
+  font-family: "Arial", sans-serif;
+  border: none;
+}
+
+/* Stili al passaggio del mouse */
+.login-button:hover,
+.cart-button:hover {
+  color: orange;
+}
+
+#user-button:hover i {
+  color: orange !important;
+}
+
+/* Login and registration modal styles */
+.form-control {
+  box-shadow: none !important;
+}
+
+#loginModal a {
+  transition: all 0.2s ease-in-out;
+  height: max-content !important;
+  cursor: pointer;
+}
+
+#loginModal a:hover {
+  color: #3498db;
+}
+
+#login-button {
+  place-self: end;
+}
+
+.registration-modal {
+  display: grid;
+  column-gap: 24px;
+  row-gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+/* ----------------------------------- */
+
+/* User card styles */
+.user-card {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  right: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 10rem;
+}
+
+.btn-danger:active {
+  background-color: rgba(31, 41, 55, 1) !important;
+}
+
+.btn-danger {
+  box-shadow: none !important;
+}
+/* ---------------- */
+
+.search-input {
+  padding-inline: 0.625rem;
+  padding-block: 5px;
+  border: 0.063rem solid #ddd;
+  border-radius: 0.625rem;
+  width: 22rem;
+}
+
+/* Stili al passaggio del mouse per il pulsante di ricerca */
+.search-button:hover {
+  background-color: #2078b4;
+}
+
+/*---------------------SEZIONE BANNER---------------*/
+.banner {
+  height: 30rem;
+  position: relative;
+  margin-bottom: 8rem;
+}
+
+.banner-img {
+  width: 100%;
+  height: 45rem !important;
+  object-fit: cover;
+
+}
+
+/*---------------BODY----------------*/
+.botton-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.carousel {
+  background-color: #e3e0da;
+  padding: 2rem !important;
+  padding-bottom: 1rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem !important;
+}
+
+.carousel-control-prev {
+  transition: all 0.3s ease-in-out;
+  background-color: transparent !important;
+  color: white !important;
+
+}
+
+.carousel-control-next {
+  transition: all 0.3s ease-in-out;
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.carousel-indicators {
+  position: static !important;
+  padding: 0 !important;
+}
+
+/*name SEZIONE DEL CAROSELLO*/
+.section-name {
+  font-size: 3.125rem;
+  font-weight: bold;
+}
+
+#carouselExampleIndicatorsResponsive {
+  display: none;
+}
+
+#carouselDoubleExampleIndicatorsResponsive {
+  display: none;
+}
+
+#carouselExampleIndicators2Responsive {
+  display: none;
+}
+
+#carouselDoubleExampleIndicators2Responsive {
+  display: none;
+}
+
+#carouselExampleIndicators3Responsive {
+  display: none;
+}
+
+#carouselDoubleExampleIndicators3Responsive {
+  display: none;
+}
+
+/*---------------------------DA METTERE IN UN SECONDO FILE CSS-----------------------------*/
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2rem !important;
+  row-gap: 2rem !important;
+  height: 100% !important;
+}
+
+.container {
+  display: flex;
+}
+
+.menu-container {
+  margin-top: 11rem;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: 10%;
+}
+
+.small-container {
+  padding-right: 25px;
+  padding-left: 25px;
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small-product {
+  box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 10px;
+  transition: transform 0.5s;
+  height: 100%;
+}
+
+.small-product:hover {
+  transform: translateY(-10px);
+}
+
+.small-name {
+  font-size: 0.9rem;
+  max-width: 10rem;
+}
+
+.small-price {
+  font-size: 0.6rem;
+}
+
+.small-buy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding-inline: 1rem;
+  padding-block: 4px !important;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.small-buy-button:hover {
+  background-color: #2078b4;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.name {
+  font-size: 30px;
+  place-self: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+nav a {
+  border-radius: 5px;
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  transition: background 0.5s;
+  display: block;
+  outline: 0;
+}
+
+nav a:hover,
+nav li:focus-within > a {
+  background: lightgrey;
+  cursor: pointer;
+}
+
+#price:focus,
+#price:active,
+#genre:focus,
+#genre:active {
+  background-color: transparent !important;
+}
+
+/* Make the dropdown animate. */
+.dropdown2-content {
+  min-width: max-content;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s;
+}
+
+/* The max-height should be set to something that will always be a little bit bigger than the height of the content. */
+.dropdown2:hover .dropdown2-content {
+  max-height: 200px;
+}
+
+#signupModal {
+  transform: translateX(-6%) !important;
+}
+
+#signupModal .modal-content {
+  width: 45rem !important;
+}
+
+#email-container {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  width: 25rem;
+}
+
+/*------------------------------CART SECTION------------------------------------*/
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 80%;
+  margin-top: 4rem;
+}
+td,
+th {
+  border: 1px solid black;
+}
+/*--------------------------FOOTER-------------------*/
+
+.info-bar {
+  font-size: 14px;
+  background-color: #092236;
+  color: white;
+  padding: 0.625rem;
+  position: sticky;
+  top: 100%;
+  margin-top: 5rem;
+}
+
+/* Aggiungi queste regole per il pulsante Torna all'inizio */
+#scrollToTopButton {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  background-color: transparent;
+  border-radius: 30%;
+  color: #fff;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#scrollToTopButton:hover {
+  background-color: #2078b4;
+}
+
+/*--------------------------RESPONSIVE 1080px-------------------*/
+
+@media (max-width: 1060px) {
+  .icona {
+    top: 0.312rem;
+    left: 0.312rem;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  nav a {
+    border-radius: 5px;
+    font-family: "Bebas Neue";
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    transition: background 0.5s;
+    display: block;
+    outline: 0;
+  }
+
+  nav a:hover,
+  nav li:focus-within > a {
+    background: lightgrey;
+    cursor: pointer;
+  }
+
+  /* Make the dropdown animate. */
+  .dropdown2-content {
+    min-width: max-content;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s;
+  }
+
+  /* The max-height should be set to something that will always be a little bit bigger than the height of the content. */
+  .dropdown2:hover .dropdown2-content,
+  .dropdown2:focus .dropdown2-content,
+  .dropdown2:focus-within .dropdown2-content {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem !important;
+    row-gap: 2rem !important;
+  }
+
+  #carouselDoubleExampleIndicatorsResponsive {
+    display: block;
+  }
+
+  #carouselExampleIndicatorsResponsive {
+    display: none;
+  }
+
+  #carouselExampleIndicators {
+    display: none;
+  }
+
+  #carouselDoubleExampleIndicators2Responsive {
+    display: block;
+  }
+
+  #carouselExampleIndicators2Responsive {
+    display: none;
+  }
+
+  #carouselExampleIndicators2 {
+    display: none;
+  }
+
+  #carouselDoubleExampleIndicators3Responsive {
+    display: block;
+  }
+
+  #carouselExampleIndicators3Responsive {
+    display: none;
+  }
+
+  #carouselExampleIndicators3 {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .banner {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  #signupModal {
+    transform: translateX(2%) !important;
+  }
+
+  #signupModal .modal-content {
+    width: 30rem !important;
+  }
+
+  .registration-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  #email-container {
+    width: 100% !important;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  #carouselDoubleExampleIndicatorsResponsive {
+    display: none;
+  }
+
+  #carouselExampleIndicatorsResponsive {
+    display: block;
+  }
+
+  #carouselExampleIndicators {
+    display: none;
+  }
+
+  #carouselDoubleExampleIndicators2Responsive {
+    display: none;
+  }
+
+  #carouselExampleIndicators2Responsive {
+    display: block;
+  }
+
+  #carouselExampleIndicators2 {
+    display: none;
+  }
+
+  #carouselDoubleExampleIndicators3Responsive {
+    display: none;
+  }
+
+  #carouselExampleIndicators3Responsive {
+    display: block;
+  }
+
+  #carouselExampleIndicators3 {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 2rem !important;
+    row-gap: 2rem !important;
+  }
+
+  .name {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 575px) {
+  #signupModal {
+    transform: translateX(16%) !important;
+  }
+
+  #signupModal .modal-content {
+    width: 22rem !important;
+    max-height: 35rem !important;
+  }
+
+  #loginModal {
+    transform: translateX(16%) !important;
+  }
+
+  #loginModal .modal-content {
+    width: 22rem !important;
+  }
+  .info-bar{
+    font-size: 8px !important;
+  }
+}
+
+@media (max-width: 455px) {
+  .name {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 430px) {
+  .name {
+    font-size: 21px;
+  }
+
+  #signupModal {
+    transform: translateX(10%) !important;
+  }
+
+  #loginModal {
+    transform: translateX(10%) !important;
+  }
+
+  .menu-container {
+    margin-top: 10rem;
+  }
+}
+
+@media (max-width: 404px) {
+  .name {
+    font-size: 18px;
+  }
+
+  .gap-5 {
+    gap: 4.25rem !important;
+  }
+}
+
+@media (max-width: 370px) {
+  body {
+    font-family: "Audiowide", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .icona {
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .carousel {
+    scroll-behavior: smooth;
+    transition: all 0.25s ease-in;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .prev-button,
+  .next-button,
+  .prev-button2,
+  .next-button2,
+  .prev-button3,
+  .next-button3 {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.375rem;
+    cursor: pointer;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .prev-button:hover,
+  .next-button:hover,
+  .prev-button2:hover,
+  .next-button2:hover,
+  .prev-button3:hover,
+  .next-button3:hover {
+    background-color: #2078b4;
+  }
+
+  /* Make the dropdown animate. */
+  .dropdown2-content {
+    min-width: max-content;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s;
+  }
+
+  /* The max-height should be set to something that will always be a little bit bigger than the height of the content. */
+  .dropdown2:hover .dropdown2-content,
+  .dropdown2:focus .dropdown2-content,
+  .dropdown2:focus-within .dropdown2-content {
+    max-height: 200px;
+  }
+
+  .name {
+    font-size: 21px;
+  }
+
+  #signupModal {
+    transform: translateX(7%) !important;
+  }
+
+  #signupModal .modal-content {
+    width: 18rem !important;
+    max-height: 35rem !important;
+  }
+
+  #loginModal {
+    transform: translateX(7%) !important;
+  }
+
+  #loginModal .modal-content {
+    width: 18rem !important;
+  }
+
+  #to-registration {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .menu-container {
+    margin-top: 10rem;
+  }
+}

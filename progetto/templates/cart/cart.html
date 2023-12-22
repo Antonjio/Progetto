@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <link rel="icon" href="../static/image/logo.png" />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
+    />
+    <meta name="theme-color" content="white" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+    <title>Games & Manga Shop</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='cart.css') }}"
+    />
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <nav id="navbar"></nav>
+    <div
+      class="container-fluid d-flex align-items-baseline justify-content-center gap-4 table-card-container w-100"
+      style="margin-top: 4rem !important"
+    >
+      <div class="table-responsive w-100">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="t-head"></th>
+              <th class="t-head">Prodotto</th>
+              <th class="t-head">Nome</th>
+              <th class="t-head">Prezzo</th>
+              <th class="t-head">Azioni</th>
+            </tr>
+          </thead>
+          <tbody class="w-100" id="cart-table-body"></tbody>
+        </table>
+      </div>
+      <div
+        class="card"
+        id="amount-card"
+        style="width: 25rem; border: none !important"
+      >
+        <div class="card-body w-100 d-flex flex-column gap-3">
+          <p
+            class="d-flex align-items-center gap-4"
+            style="font-size: 1.5rem !important; font-weight: bold !important"
+          >
+            Totale: <span id="totalAmount"></span>
+          </p>
+          <form
+            method="post"
+            id="payment"
+            onsubmit="handleOrderPayment(); return false;"
+          >
+            <button type="submit" class="btn btn-primary w-100">
+              Procedi all'ordine
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="info-bar w-100">
+      <p>Games & Manga Shop S.R.L.</p>
+      <p>address: Via Centro Direzionale ISOLA C4, 80133 Napoli NA</p>
+      <p>Email: info@gamesandmangashop.com</p>
+      <p>Partita IVA: 0464189042</p>
+      <p style="display: flex; justify-content: end; font-size: 10px">
+        © 2023 Games&MangaShop.it - All rights reserved
+      </p>
+      <button id="scrollToTopButton" onclick="scrollToTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </footer>
+    <!-- Login modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" style="width: 25rem">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="loginModalLabel">Login</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style="box-shadow: none !important"
+            ></button>
+          </div>
+          <div class="modal-body">
+            {% if error_message %}
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("errorContent").innerText =
+                  "{{ error_message }}";
+                document.getElementById("errorModal").style.display = "block";
+              });
+            </script>
+            {% endif %}
+            <div class="d-flex flex-column align-items-start gap-4">
+              <form
+                id="login"
+                class="d-flex align-items-start flex-column gap-3 w-100"
+              >
+                <div class="d-flex flex-column align-items-start gap-1 w-100">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    aria-label="Email"
+                    name="email"
+                    id="email"
+                  />
+                </div>
+                <div class="d-flex flex-column align-items-start gap-1 w-100">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    aria-label="Password"
+                    name="password"
+                    id="password"
+                  />
+                </div>
+                <div
+                  class="d-flex align-content-center justify-content-start gap-2"
+                >
+                  <p id="createAccountText">Non hai un account?</p>
+                  <a data-bs-toggle="modal" data-bs-target="#signupModal">
+                    Crealo ora!
+                  </a>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="transition: all 0.2s ease-in-out"
+                  id="login-button"
+                >
+                  Accedi
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sign up modal -->
+    <div
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      aria-labelledby="signUpModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div
+          class="modal-content"
+          style="
+            width: 40rem !important;
+            transform: translateX(-10%) !important;
+          "
+        >
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="signUpModalLabel">
+              Registrazione
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style="box-shadow: none !important"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="registration" class="registration-modal w-100">
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="firstName">name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="name"
+                  aria-label="name"
+                  name="firstName"
+                  id="firstName"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="lastName">lastname</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="lastname"
+                  aria-label="lastname"
+                  name="lastName"
+                  id="lastName"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="birthdate">Data di Nascita</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Data di Nascita"
+                  aria-label="Data di Nascita"
+                  name="birthdate"
+                  id="birthdate"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="phoneNumber">number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="number"
+                  aria-label="number"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="country">country</label>
+                <select
+                  class="form-select"
+                  id="country"
+                  name="country"
+                  required
+                  style="
+                    background-color: white !important;
+                    color: inherit !important;
+                  "
+                >
+                  <option selected>Select</option>
+                </select>
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="address">address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="address"
+                  aria-label="address"
+                  name="address"
+                  id="address"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  aria-label="Username"
+                  name="username"
+                  id="username"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-column align-items-start gap-1 w-100">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  aria-label="Password"
+                  name="signupPassword"
+                  id="signupPassword"
+                  required
+                />
+              </div>
+              <div
+                class="d-flex flex-column align-items-start gap-1"
+                style="
+                  grid-column: 1 / span 2;
+                  justify-self: center;
+                  width: 25rem;
+                "
+              >
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  aria-label="Email"
+                  name="signupEmail"
+                  id="signupEmail"
+                  required
+                />
+              </div>
+              <div class="d-flex flex-row-reverse align-items-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="transition: all 0.2s ease-in-out"
+                  id="registration-button"
+                >
+                  Registrati
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="errorModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <i class="bi bi-x close" onclick="closeModal()"></i>
+        <div id="errorContent"></div>
+      </div>
+    </div>
+    <script type="module">
+      import { loadNavbar } from "{{ url_for('static', filename='navbar.js') }}";
+
+      document.addEventListener("DOMContentLoaded", loadNavbar);
+    </script>
+  </body>
+</html>
