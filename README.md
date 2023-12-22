@@ -4,4 +4,4 @@ https://docs.google.com/presentation/d/1RNCpiNlL2F4e9lAtBiW7QWgxBG_iG_WHrMBxUW7x
 # Web app
 https://gamesandmangashop.pythonanywhere.com/
 # Presentation
-
+https://docs.google.com/presentation/d/1PWJY55j1jZReMzPleI1Io-3ydEps_b1K_Gyk_Ahdtl8/edit?usp=sharing
